@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ilumina+ | Reporte de Postes</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <div class="logo-badge">
+        <svg width="36" height="36" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle class="glow-bulb" cx="24" cy="17" r="11" fill="url(#glow)" />
+          <circle cx="24" cy="17" r="6" fill="#ffe08a"/>
+          <path d="M18 25 L15 40 H33 L30 25" stroke="#dfe6f5" stroke-width="2.4" stroke-linejoin="round" fill="none"/>
+          <rect x="21" y="40" width="6" height="4" rx="1" fill="#dfe6f5"/>
+          <defs>
+            <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#ffb703"/>
+              <stop offset="100%" stop-color="#ffb703" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+        </svg>
+      </div>
+      <div>
+        <p class="eyebrow">Prefeitura de Limeira</p>
+        <h1>Ilumina+</h1>
+      </div>
+    </div>
+    <p class="subtitle">Encontrou um poste com defeito? Reporte em poucos segundos e acompanhe o atendimento da sua rua.</p>
+
+    <div class="stat-strip">
+      <div class="stat-pill">Ocorrências ativas: <strong id="statAtivas">2</strong></div>
+      <div class="stat-pill">Urgentes: <strong id="statUrgentes">1</strong></div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="card">
+    <h2>Registrar problema</h2>
+    <p class="card-desc">Preencha os campos abaixo. Quanto mais detalhes, mais rápido nossa equipe consegue agir.</p>
+
+    <form id="reportForm" novalidate>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nome">Nome</label>
+          <input id="nome" type="text" placeholder="Digite seu nome" required>
+        </div>
+        <div class="form-group">
+          <label for="tipo">Tipo de problema</label>
+          <select id="tipo" required>
+            <option value="">Selecione</option>
+            <option>Lâmpada apagada</option>
+            <option>Poste piscando</option>
+            <option>Fiação exposta</option>
+            <option>Poste caído</option>
+            <option>Outro</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="endereco">Endereço do poste</label>
+        <input id="endereco" type="text" placeholder="Rua, número, bairro..." required>
+      </div>
+
+      <div class="urgent-note" id="urgentNote">
+        ⚠️ Esse tipo de problema é tratado como prioridade — nossa equipe é notificada imediatamente.
+      </div>
+
+      <div class="form-group">
+        <label for="descricao">Descrição <span class="hint">(opcional)</span></label>
+        <textarea id="descricao" maxlength="240" placeholder="Descreva o problema com detalhes"></textarea>
+        <div class="char-count"><span id="charCount">0</span>/240</div>
+      </div>
+
+      <div class="form-group">
+        <label for="foto">Enviar foto <span class="hint">(opcional, até 5MB)</span></label>
+        <input id="foto" type="file" accept="image/*">
+        <div class="file-preview" id="filePreview">
+          <img id="previewImg" alt="Pré-visualização da foto enviada">
+          <span id="previewName"></span>
+        </div>
+      </div>
+
+      <button class="btn" type="submit">Enviar ocorrência</button>
+    </form>
+  </div>
+
+  <div class="status">
+    <div class="status-head">
+      <h2>Ocorrências recentes</h2>
+    </div>
+
+    <div id="reportsList">
+      <div class="report">
+        <div class="report-top">
+          <div>
+            <h3>Rua das Flores, Centro</h3>
+            <span class="tipo">Lâmpada apagada</span>
+          </div>
+          <span class="protocolo">#0001</span>
+        </div>
+        <p class="descricao">Poste apagado há 3 dias.</p>
+        <div class="meta">
+          <span>Reportado por: Ana Souza</span>
+          <span>25/07/2026</span>
+        </div>
+        <span class="badge pendente">Pendente</span>
+      </div>
+
+      <div class="report urgente">
+        <div class="report-top">
+          <div>
+            <h3>Avenida Brasil, Jardim Novo</h3>
+            <span class="tipo">Fiação exposta</span>
+          </div>
+          <span class="protocolo">#0002</span>
+        </div>
+        <p class="descricao">Fiação exposta oferecendo risco.</p>
+        <div class="meta">
+          <span>Reportado por: Carlos Lima</span>
+          <span>26/07/2026</span>
+        </div>
+        <span class="badge urgente-badge">Urgente</span>
+      </div>
+    </div>
+
+    <div class="empty-state" id="emptyState" style="display:none;">
+      Nenhuma ocorrência registrada ainda. Seja o primeiro a reportar um problema na sua rua.
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  © 2026 Ilumina+ Limeira — Sistema de atendimento urbano
+</footer>
+
+<div id="toast"></div>
