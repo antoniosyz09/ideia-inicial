@@ -70,6 +70,11 @@ form.addEventListener("submit", function (event) {
     return;
   }
 
+  if (fotoInput.files.length === 0) {
+    showToast("Envie uma foto do poste para registrar a ocorrência.");
+    return;
+  }
+
   const card = document.createElement("div");
   card.className = "report" + (isUrgente ? " urgente" : "");
 
